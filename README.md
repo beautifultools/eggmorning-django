@@ -10,9 +10,10 @@ You can start with this following:
 
 ```
 > git clone https://github.com/2019somsom/som-django
-> cd som-django\
-> npm install
-> npm start
+> cd som-django-new\som
+> myvenv\Scripts\activate	
+> cd som
+> python manage.py runserver
 ```
 
 > The framework we used
