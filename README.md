@@ -10,7 +10,7 @@ You can start with this following:
 
 ```
 > git clone https://github.com/2019somsom/som-django
-> cd som-django-new\som
+> cd som-django-new
 > myvenv\Scripts\activate	
 > cd som
 > python manage.py runserver
