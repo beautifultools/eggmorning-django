@@ -3,21 +3,23 @@ EggMorning
 Egg Morning is a mobile app service for booking hotel breakfast packages.
 
 
+
 ## Getting Started
 
 You can start with this following:
 
 ```
-> git clone https://github.com/2019somsom/som-react-native.git
-> cd som-react-native
-> npm install
-> npm start
+> git clone https://github.com/2019somsom/som-django
+> cd som-django-new
+> myvenv\Scripts\activate	
+> cd som
+> python manage.py runserver
 ```
 
 > The framework we used
->   > 1. React-Native
->   > 2. Expo
->   > 3. Native-Base
+>   > 1. django
+>   > 2. Rest API
+>   > 3. Graph QL
 
 
 
@@ -30,7 +32,9 @@ Team SOM
 E-Mail : <2019somsom@gmail.com>
 
 
+## Author
 
+👤 **Jung zooon, Yee Seulgi, Yang dongmin**
 
 ## License
 
