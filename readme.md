@@ -17,7 +17,7 @@ You can start with this following:
 ```
 
 > The framework we used
->   > 1. django 
+>   > 1. django 2.2.6
 >   > 2. Rest API
 >   > 3. Graph QL
 >   > 4. python 3.7.4
