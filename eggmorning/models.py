@@ -3,13 +3,13 @@ from django.db import models
 
 # Create your models here.
 class MainSlide(models.Model):
-    slide_no = models.IntegerField()
-    url = models.CharField(max_length=1024)
+    img_url = models.CharField(max_length=1024)
     desc = models.CharField(max_length=256)
+    priority = models.IntegerField()
     start_date = models.DateTimeField('start display datetime')
     end_date = models.DateTimeField('end display datetime')
-    mod_date = models.DateTimeField()
-    reg_date = models.DateTimeField()
+    mod_date = models.DateTimeField(auto_now=True)
+    reg_date = models.DateTimeField(auto_now_add=True)
 
 
 class Hotel(models.Model):
