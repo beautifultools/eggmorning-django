@@ -1,8 +1,6 @@
-from django.shortcuts import render
-from django.views import View
 from django.http import HttpResponse
 from django.http import JsonResponse
-from datetime import datetime
+
 from . import models
 
 
@@ -13,20 +11,30 @@ def index(request):
     return HttpResponse("Hello, world.")
 
 
-class MainSlide(View):
-    def get(self, request):
-        queryset = models.MainSlide.check()
-        return JsonResponse({'result': 123})
-
-    def put(self, request):
-        queryset = MainSlide(priority=1, url='http://test/')
-        result = queryset.save()
-        print(f'result : {result}')
-        return HttpResponse("Put 요청을 잘받았다")
+def get_man_slide(request):
+    result = models.MainSlide.objects.all().values()
+    return JsonResponse({'result': list(result)}, safe=False)
 
 
-def save_main_slide(request):
-    queryset = models.MainSlide(priority=1, img_url='http://test/', start_date=datetime.today(), end_date=datetime.today())
-    queryset.save()
-    # print(f'result : {result}')
-    return HttpResponse("Put 요청을 잘받았다")
+def get_session(request):
+    result = models.MainSlide.objects.all().values()
+    return JsonResponse({'result': list(result)}, safe=False)
+
+
+def signup(request):
+    user_id = request.GET.get('id', '')
+    password = request.GET.get('password', '')
+    name = request.GET.get('name', '')
+    phone = request.GET.get('phone', '')
+    birth = request.GET.get('birth', '2020-08-20')
+    gender = request.GET.get('gender', '')
+
+    if user_id and password:
+        new_user = models.User(user_id=user_id, password=password, name=name, phone=phone, birth=birth, gender=gender)
+        new_user.save()
+        return JsonResponse({'result': True}, safe=False)
+    else:
+        return JsonResponse({'result': False, 'message': 'id or password is empty'}, safe=False)
+
+
+
