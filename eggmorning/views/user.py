@@ -1,5 +1,5 @@
 from django.contrib.auth import authenticate
-from ..models.user import User
+from eggmorning.models import User
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 
