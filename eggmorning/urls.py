@@ -1,9 +1,13 @@
 from django.urls import path
 
-from . import views
+from .views import slide
+from .views import user
+from .views import etc
 
 urlpatterns = [
-    path('', views.index, name='index'),
-    path('main/slide', views.get_man_slide, name='main_slide'),
-    path('signup', views.signup, name='signup'),
+    path('', etc.index, name='index'),
+    path('main/slide', slide.get_main_slide_list, name='main_slide'),
+    path('main/slide/<int:slide_id>', slide.get_one_main_slide, name='main_slide'),
+    path('user', user.signup, name='signup'),
+    path('session', user.login, name='login')
 ]

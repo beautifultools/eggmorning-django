@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
 # Create your models here.
@@ -19,13 +20,7 @@ class Hotel(models.Model):
     addr = models.CharField(max_length=256)
 
 
-class HotelProp(models.Model):
-    hotel_no = models.ForeignKey(Hotel, on_delete=models.CASCADE)
-    prop_name = models.CharField(max_length=64)
-    prop_value = models.IntegerField()
-
-
-class RankCat(models.Model):
+class RankCategory(models.Model):
     cat_no = models.IntegerField('category number')
     cat_name = models.CharField('category name', max_length=32)
     cat_code = models.CharField('category code', max_length=16)
@@ -33,18 +28,14 @@ class RankCat(models.Model):
 
 class HotelRank(models.Model):
     hotel = models.ForeignKey(Hotel, on_delete=models.CASCADE)
-    category = models.ForeignKey(RankCat, on_delete=models.CASCADE)
+    category = models.ForeignKey(RankCategory, on_delete=models.CASCADE)
     rank = models.FloatField()
 
 
-class User(models.Model):
-    user_id = models.CharField(max_length=128, default='')
-    password = models.CharField(max_length=128, default='')
-    name = models.CharField(max_length=64, default='')
+class CustomUser(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     phone = models.CharField(max_length=32, default='')
     birth = models.DateField()
     gender = models.CharField(max_length=1, default='')
-    mod_data = models.DateField(auto_now=True)
-    reg_date = models.DateField(auto_now_add=True)
 
 
