@@ -8,6 +8,7 @@ from .views import rank
 urlpatterns = [
     path('', etc.index, name='index'),
     path('main/slide', slide.get_main_slide_list, name='main_slide'),
+    path('main/slide/create/dummy', slide.create_dummy_slide, name='create_dummy_slide'),
     path('main/slide/<int:slide_id>', slide.get_one_main_slide, name='main_slide'),
     path('user', user.signup, name='signup'),
     path('user/check/email', user.id_check, name='check_email'),
