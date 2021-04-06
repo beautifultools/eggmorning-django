@@ -20,7 +20,22 @@ BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'g5$+%pg3*^u$ecg2i5kekqsox4s7%ty)5shj6q6!5g@b5sl!+1'
+# SECRET_KEY = 'g5$+%pg3*^u$ecg2i5kekqsox4s7%ty)5shj6q6!5g@b5sl!+1'
+
+# json 파일에서 불러오기 / 21.04.02_dongmin
+secret_file = os.path.join(BASE_DIR, 'secrets.json')
+
+with open(secret_file) as f:
+    secrets = json.loads(f.read())
+
+def get_secret(setting, secrets=secrets):
+    try:
+        return secrets[setting]
+    except KeyError:
+        error_msg = "Set the {0} environment variable".format(setting)
+        raise ImproperlyConfigured(error_msg)
+
+SECRET_KEY = get_secret("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -31,13 +46,18 @@ ALLOWED_HOSTS = ["127.0.0.1", "54.180.155.194"]
 # Application definition
 
 INSTALLED_APPS = [
-    'eggmorning.apps.EggmorningConfig',
+    #기본 내장앱
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    #사용자앱
+    'eggmorning.apps.EggmorningConfig',
+
+    #확인필요
     'corsheaders'
 ]
 
@@ -118,9 +138,9 @@ PASSWORD_HASHERS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ko'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Seoul'
 
 USE_I18N = True
 
@@ -133,6 +153,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# 왜 없는지 확인 필요 21.04.02
+# STATIC_ROOT = BASE_DIR / 'static'
+# ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]', '.pythonanywhere.com']
+# 테스트
+# STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'))
 
 # cors
 CORS_ALLOW_ALL_ORIGINS = True
